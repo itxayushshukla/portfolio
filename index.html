@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ayush Shukla | Digital Profile — AI/ML Engineer &amp; Mathematics Educator</title>
+<meta name="description" content="Ayush Shukla — CSE(AIML) engineering student, AI/ML developer, web developer, IoT builder, mathematics teacher and PCM doubt solver. Explore projects, experiments and free Class XII question banks.">
+<meta name="keywords" content="Ayush Shukla, Ayush Shukla Portfolio, AI ML Engineer, Machine Learning, Computer Vision, Python Developer, Web Developer, React Developer, Automation Developer, Arduino, IoT, Mathematics Teacher, PCM Doubt Solver, CSE AIML Student, Kalyan Mathematics Teacher, Call System, Result Maker, Monte Carlo Greeks, Class 12 Question Bank, Physics Question Bank, Chemistry Question Bank, Mathematics Question Bank">
+<meta name="author" content="Ayush Shukla">
+<meta name="theme-color" content="#08080a">
+<meta name="color-scheme" content="dark">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ayush Shukla | Digital Profile">
+<meta property="og:description" content="Engineer by profession. Teacher by passion. Builder by mindset. Explore what I build, teach and experiment with.">
+<meta property="og:image" content="assets/logo.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ayush Shukla | Digital Profile">
+<meta name="twitter:description" content="Engineer by profession. Teacher by passion. Builder by mindset.">
+<meta name="twitter:image" content="assets/logo.png">
+
+<!-- Favicons / PWA -->
+<link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="icons/icon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ayush Shukla",
+  "jobTitle": ["AI/ML Engineer", "Mathematics Teacher"],
+  "url": "https://itxayushshukla.dev",
+  "sameAs": [
+    "https://github.com/itxayushshukla/",
+    "https://www.linkedin.com/in/ayush-shukla-b1b355384/"
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ NOISE / GRAIN OVERLAY ============ -->
+<div class="grain"></div>
+
+<!-- ============ CUSTOM CURSOR (desktop only) ============ -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"><span id="cursorText"></span></div>
+
+<!-- ============ LOADING SCREEN ============ -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-logo-wrap">
+      <img src="assets/logo.png" alt="AS Logo" class="loader-logo">
+      <svg class="loader-ring" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="56" />
+      </svg>
+    </div>
+    <h1 class="loader-name">AYUSH SHUKLA</h1>
+    <p class="loader-tag">ENGINEER <span class="x">×</span> EDUCATOR</p>
+    <div class="loader-bar"><div class="loader-bar-fill" id="loaderFill"></div></div>
+    <p class="loader-pct" id="loaderPct">0%</p>
+  </div>
+</div>
+
+<!-- ============ BACKGROUND CANVAS (particles / grid) ============ -->
+<canvas id="bgCanvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- ============ INSTALL PROMPT ============ -->
+<div class="install-toast" id="installToast">
+  <img src="assets/logo.png" alt="">
+  <div>
+    <strong>Install AS Portfolio</strong>
+    <p>Keep Ayush Shukla's digital profile on your device.</p>
+  </div>
+  <div class="install-actions">
+    <button id="installYes">Install</button>
+    <button id="installNo">Not now</button>
+  </div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <button class="nav-brand" id="navBrand" type="button" aria-label="AS logo">
+    <img src="assets/logo.png" alt="AS Logo" class="nav-logo">
+    <span class="nav-brand-name">AYUSH</span>
+  </button>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="#home" class="nav-link active" data-section="home">Home</a>
+    <a href="#tabs" class="nav-link" data-tab-link="projects">Projects</a>
+    <a href="#tabs" class="nav-link" data-tab-link="experiments">Experiments</a>
+    <a href="#tabs" class="nav-link" data-tab-link="resources">Resources</a>
+    <a href="#about" class="nav-link" data-section="about">About</a>
+  </nav>
+
+  <div class="nav-right">
+    <a href="https://github.com/itxayushshukla/" target="_blank" rel="noopener" class="nav-icon" aria-label="GitHub" data-cursor="CODE">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.5c0 5 3.24 9.24 7.75 10.74.57.1.78-.24.78-.55v-2.1c-3.16.69-3.82-1.36-3.82-1.36-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.74 2.66 1.24 3.31.95.1-.73.4-1.24.72-1.53-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.66 5.31-5.19 5.59.41.35.77 1.04.77 2.11v3.13c0 .31.21.66.79.55 4.5-1.51 7.74-5.75 7.74-10.74C23.02 5.24 18.27.5 12 .5Z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/ayush-shukla-b1b355384/" target="_blank" rel="noopener" class="nav-icon" aria-label="LinkedIn" data-cursor="LINKEDIN">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+    </a>
+    <a href="assets/resumes/Ayush_Shukla_Engineering_Resume.pdf" download class="btn btn-ghost nav-resume-btn">Resume</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" data-section="home">Home</a>
+  <a href="#tabs" data-tab-link="projects">Projects</a>
+  <a href="#tabs" data-tab-link="experiments">Experiments</a>
+  <a href="#tabs" data-tab-link="resources">Resources</a>
+  <a href="#about" data-section="about">About</a>
+  <div class="mobile-menu-socials">
+    <a href="https://github.com/itxayushshukla/" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+    <a href="https://www.linkedin.com/in/ayush-shukla-b1b355384/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+    <a href="mailto:ayushlab02@gmail.com" aria-label="Email">Email</a>
+  </div>
+  <a href="assets/resumes/Ayush_Shukla_Engineering_Resume.pdf" download class="btn btn-solid">Download Resume</a>
+</div>
+
+<main>
+
+  <!-- ============ PROFILE (HERO) ============ -->
+  <section class="profile" id="home">
+    <div class="hero-grid"></div>
+
+    <div class="profile-inner">
+      <div class="profile-photo-wrap reveal">
+        <span class="profile-ring"></span>
+        <div class="profile-photo-frame">
+          <img src="assets/profile.jpg" alt="Portrait of Ayush Shukla" class="profile-photo">
+        </div>
+      </div>
+
+      <div class="profile-info reveal">
+        <h1 class="profile-name">Ayush Shukla</h1>
+        <p class="profile-role">CSE (AIML) <span class="x">•</span> Builder <span class="x">•</span> Educator</p>
+        <p class="profile-bio">Building AI, software and robotics experiments — and making complex mathematics easier to understand.</p>
+
+        <div class="profile-socials">
+          <a href="https://github.com/itxayushshukla/" target="_blank" rel="noopener" class="social-link" data-cursor="CODE">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.5c0 5 3.24 9.24 7.75 10.74.57.1.78-.24.78-.55v-2.1c-3.16.69-3.82-1.36-3.82-1.36-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.74 2.66 1.24 3.31.95.1-.73.4-1.24.72-1.53-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.66 5.31-5.19 5.59.41.35.77 1.04.77 2.11v3.13c0 .31.21.66.79.55 4.5-1.51 7.74-5.75 7.74-10.74C23.02 5.24 18.27.5 12 .5Z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/ayush-shukla-b1b355384/" target="_blank" rel="noopener" class="social-link" data-cursor="LINKEDIN">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="mailto:ayushlab02@gmail.com" class="social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
+            <span>Email</span>
+          </a>
+        </div>
+
+        <div class="profile-actions">
+          <a href="#tabs" class="btn btn-solid" id="exploreBtn">Explore Projects</a>
+          <a href="assets/resumes/Ayush_Shukla_Engineering_Resume.pdf" download class="btn btn-outline">Download Resume</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- STATS ---- -->
+    <div class="profile-stats reveal">
+      <div class="stat"><strong>6</strong><span>Projects</span></div>
+      <div class="stat"><strong>AI + ML</strong><span>Building</span></div>
+      <div class="stat"><strong>Robotics</strong><span>Exploring</span></div>
+      <div class="stat"><strong>Mathematics</strong><span>Teaching</span></div>
+    </div>
+
+    <!-- ---- HIGHLIGHTS ---- -->
+    <div class="highlights reveal" id="highlights">
+      <button class="highlight" data-highlight="build" data-cursor="VIEW">
+        <span class="highlight-ring"><span class="highlight-emoji">🛠️</span></span>
+        <span class="highlight-label">Build</span>
+      </button>
+      <button class="highlight" data-highlight="ai" data-cursor="VIEW">
+        <span class="highlight-ring"><span class="highlight-emoji">🤖</span></span>
+        <span class="highlight-label">AI</span>
+      </button>
+      <button class="highlight" data-highlight="robotics" data-cursor="VIEW">
+        <span class="highlight-ring"><span class="highlight-emoji">🔧</span></span>
+        <span class="highlight-label">Robotics</span>
+      </button>
+      <button class="highlight" data-highlight="math" data-cursor="VIEW">
+        <span class="highlight-ring"><span class="highlight-emoji">∑</span></span>
+        <span class="highlight-label">Math</span>
+      </button>
+      <button class="highlight" data-highlight="resume" data-cursor="VIEW">
+        <span class="highlight-ring"><span class="highlight-emoji">📄</span></span>
+        <span class="highlight-label">Resume</span>
+      </button>
+    </div>
+
+    <a href="#tabs" class="scroll-cue"><span></span>Scroll</a>
+  </section>
+
+  <!-- ============ TABS: PROJECTS / EXPERIMENTS / RESOURCES ============ -->
+  <section class="tabs-section" id="tabs">
+    <div class="tabs-bar" role="tablist">
+      <button class="tab-btn active" data-tab="projects" role="tab" aria-selected="true">Projects</button>
+      <button class="tab-btn" data-tab="experiments" role="tab" aria-selected="false">Experiments</button>
+      <button class="tab-btn" data-tab="resources" role="tab" aria-selected="false">Resources</button>
+      <span class="tab-indicator" id="tabIndicator"></span>
+    </div>
+
+    <!-- PROJECTS PANEL -->
+    <div class="tab-panel active" data-panel="projects" id="panelProjects">
+      <div class="ig-grid">
+
+        <article class="ig-card">
+          <button class="ig-like" data-like="pothole" aria-label="Like Pothole Finder">
+            <svg class="heart-icon" viewBox="0 0 24 24"><path d="M12 21s-6.7-4.35-9.33-8.02C.86 10.2 1.2 6.9 3.6 5.06 5.6 3.53 8.3 3.9 9.9 5.8L12 8.2l2.1-2.4c1.6-1.9 4.3-2.27 6.3-.74 2.4 1.84 2.74 5.14.93 7.92C18.7 16.65 12 21 12 21z"/></svg>
+          </button>
+          <button class="ig-media" data-open="pothole" aria-label="View Pothole Finder details">
+            <img src="assets/projects/pothole.jpg" alt="Pothole Finder application screenshot" loading="lazy">
+            <span class="ig-overlay"><span class="ig-overlay-title">Pothole Finder</span><span class="ig-overlay-cat">Computer Vision • AI</span></span>
+          </button>
+        </article>
+
+        <article class="ig-card">
+          <button class="ig-like" data-like="jarvis" aria-label="Like JARVIS">
+            <svg class="heart-icon" viewBox="0 0 24 24"><path d="M12 21s-6.7-4.35-9.33-8.02C.86 10.2 1.2 6.9 3.6 5.06 5.6 3.53 8.3 3.9 9.9 5.8L12 8.2l2.1-2.4c1.6-1.9 4.3-2.27 6.3-.74 2.4 1.84 2.74 5.14.93 7.92C18.7 16.65 12 21 12 21z"/></svg>
+          </button>
+          <button class="ig-media" data-open="jarvis" aria-label="View JARVIS details">
+            <img src="assets/projects/jarvis.jpg" alt="JARVIS AI voice assistant interface screenshot" loading="lazy">
+            <span class="ig-overlay"><span class="ig-overlay-title">JARVIS</span><span class="ig-overlay-cat">Generative AI • Voice</span></span>
+          </button>
+        </article>
+
+        <article class="ig-card">
+          <button class="ig-like" data-like="callsystem" aria-label="Like Call System">
+            <svg class="heart-icon" viewBox="0 0 24 24"><path d="M12 21s-6.7-4.35-9.33-8.02C.86 10.2 1.2 6.9 3.6 5.06 5.6 3.53 8.3 3.9 9.9 5.8L12 8.2l2.1-2.4c1.6-1.9 4.3-2.27 6.3-.74 2.4 1.84 2.74 5.14.93 7.92C18.7 16.65 12 21 12 21z"/></svg>
+          </button>
+          <button class="ig-media" data-open="callsystem" aria-label="View Call System details">
+            <img src="assets/projects/call-system.jpg" alt="Call System automated absence follow-up dashboard screenshot" loading="lazy">
+            <span class="ig-overlay"><span class="ig-overlay-title">Call System</span><span class="ig-overlay-cat">Automation • EdTech</span></span>
+          </button>
+        </article>
+
+        <article class="ig-card">
+          <button class="ig-like" data-like="resultmaker" aria-label="Like Result Maker">
+            <svg class="heart-icon" viewBox="0 0 24 24"><path d="M12 21s-6.7-4.35-9.33-8.02C.86 10.2 1.2 6.9 3.6 5.06 5.6 3.53 8.3 3.9 9.9 5.8L12 8.2l2.1-2.4c1.6-1.9 4.3-2.27 6.3-.74 2.4 1.84 2.74 5.14.93 7.92C18.7 16.65 12 21 12 21z"/></svg>
+          </button>
+          <button class="ig-media" data-open="resultmaker" aria-label="View Result Maker details">
+            <img src="assets/projects/result-maker.jpg" alt="Result Maker student batch report dashboard screenshot" loading="lazy">
+            <span class="ig-overlay"><span class="ig-overlay-title">Result Maker</span><span class="ig-overlay-cat">EdTech • Data</span></span>
+          </button>
+        </article>
+
+        <article class="ig-card">
+          <button class="ig-like" data-like="mcad" aria-label="Like MC/AD Greeks">
+            <svg class="heart-icon" viewBox="0 0 24 24"><path d="M12 21s-6.7-4.35-9.33-8.02C.86 10.2 1.2 6.9 3.6 5.06 5.6 3.53 8.3 3.9 9.9 5.8L12 8.2l2.1-2.4c1.6-1.9 4.3-2.27 6.3-.74 2.4 1.84 2.74 5.14.93 7.92C18.7 16.65 12 21 12 21z"/></svg>
+          </button>
+          <button class="ig-media" data-open="mcad" aria-label="View MC/AD Greeks details">
+            <img src="assets/projects/mc-ad-greeks.jpg" alt="MC/AD Monte Carlo option Greeks dashboard screenshot" loading="lazy">
+            <span class="ig-overlay"><span class="ig-overlay-title">MC/AD Greeks</span><span class="ig-overlay-cat">Finance • AI</span></span>
+          </button>
+        </article>
+
+        <article class="ig-card">
+          <button class="ig-like" data-like="academy" aria-label="Like National Academy Website">
+            <svg class="heart-icon" viewBox="0 0 24 24"><path d="M12 21s-6.7-4.35-9.33-8.02C.86 10.2 1.2 6.9 3.6 5.06 5.6 3.53 8.3 3.9 9.9 5.8L12 8.2l2.1-2.4c1.6-1.9 4.3-2.27 6.3-.74 2.4 1.84 2.74 5.14.93 7.92C18.7 16.65 12 21 12 21z"/></svg>
+          </button>
+          <button class="ig-media" data-open="academy" aria-label="View National Academy Website details">
+            <img src="assets/projects/academy.jpg" alt="National Academy website screenshot" loading="lazy">
+            <span class="ig-overlay"><span class="ig-overlay-title">National Academy</span><span class="ig-overlay-cat">Frontend • Client</span></span>
+          </button>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- EXPERIMENTS PANEL -->
+    <div class="tab-panel" data-panel="experiments" id="panelExperiments">
+      <p class="tab-panel-note">I build things because I want to understand how they work.</p>
+      <div class="experiment-grid">
+
+        <article class="exp-card">
+          <div class="exp-media">
+            <img src="assets/projects/jarvis.jpg" alt="JARVIS AI voice assistant" loading="lazy">
+            <span class="exp-status status-building">BUILDING</span>
+          </div>
+          <div class="exp-body">
+            <h4>JARVIS</h4>
+            <p>An AI voice assistant that understands spoken commands and automates tasks. Wake-word detection and offline recognition are next.</p>
+            <button class="btn btn-small btn-outline" data-open="jarvis" data-cursor="VIEW">Details</button>
+          </div>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-media">
+            <img src="assets/projects/pothole.jpg" alt="Pothole detection computer vision experiment" loading="lazy">
+            <span class="exp-status status-experiment">EXPERIMENT</span>
+          </div>
+          <div class="exp-body">
+            <h4>Pothole Finder</h4>
+            <p>A YOLO-based computer vision experiment that detects road damage directly from images and video.</p>
+            <button class="btn btn-small btn-outline" data-open="pothole" data-cursor="VIEW">Details</button>
+          </div>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-media">
+            <img src="assets/projects/mc-ad-greeks.jpg" alt="Monte Carlo option Greeks experiment" loading="lazy">
+            <span class="exp-status status-experiment">EXPERIMENT</span>
+          </div>
+          <div class="exp-body">
+            <h4>MC/AD Greeks</h4>
+            <p>Pricing options via Monte Carlo and computing Greeks through automatic differentiation, sidestepping finite-difference bumping.</p>
+            <button class="btn btn-small btn-outline" data-open="mcad" data-cursor="VIEW">Details</button>
+          </div>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-media exp-media-plain">
+            <span class="exp-icon">🔧</span>
+            <span class="exp-status status-learning">LEARNING</span>
+          </div>
+          <div class="exp-body">
+            <h4>Hardware &amp; IoT</h4>
+            <p>Learning Arduino, circuit design and sensors — hands-on hardware experiments alongside the software work.</p>
+            <span class="exp-tag-note">No public build yet</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- RESOURCES PANEL -->
+    <div class="tab-panel" data-panel="resources" id="panelResources">
+      <p class="tab-panel-note">Free Class XII question banks — built while tutoring PCM.</p>
+      <div class="qbank-grid">
+
+        <div class="qbank-card tilt" data-qbank="physics">
+          <span class="qbank-icon">⚡</span>
+          <h4>Physics</h4>
+          <span class="qbank-sub">Class XII · Important Questions</span>
+          <span class="qbank-meta">52 pages</span>
+          <div class="qbank-actions">
+            <a href="assets/question-banks/Class-XII-Physics-Question-Bank.pdf" target="_blank" rel="noopener" class="btn btn-small btn-outline" data-cursor="VIEW">Preview</a>
+            <a href="assets/question-banks/Class-XII-Physics-Question-Bank.pdf" download class="btn btn-small btn-solid">Download</a>
+          </div>
+        </div>
+
+        <div class="qbank-card tilt" data-qbank="chemistry">
+          <span class="qbank-icon">⚗️</span>
+          <h4>Chemistry</h4>
+          <span class="qbank-sub">Class XII · Important Questions</span>
+          <span class="qbank-meta">35 pages · MCQ / VSA / SA-I / SA-II / LA</span>
+          <div class="qbank-actions">
+            <a href="assets/question-banks/Class-XII-Chemistry-Question-Bank.pdf" target="_blank" rel="noopener" class="btn btn-small btn-outline" data-cursor="VIEW">Preview</a>
+            <a href="assets/question-banks/Class-XII-Chemistry-Question-Bank.pdf" download class="btn btn-small btn-solid">Download</a>
+          </div>
+        </div>
+
+        <div class="qbank-card tilt" data-qbank="maths">
+          <span class="qbank-icon">∑</span>
+          <h4>Mathematics</h4>
+          <span class="qbank-sub">Class XII · Important Questions</span>
+          <span class="qbank-meta">102 pages</span>
+          <div class="qbank-actions">
+            <a href="assets/question-banks/Class-XII-Mathematics-Question-Bank.pdf" target="_blank" rel="noopener" class="btn btn-small btn-outline" data-cursor="VIEW">Preview</a>
+            <a href="assets/question-banks/Class-XII-Mathematics-Question-Bank.pdf" download class="btn btn-small btn-solid">Download</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LAB (REELS-INSPIRED) ============ -->
+  <section class="lab" id="lab">
+    <div class="section-head small">
+      <span class="section-eyebrow">Lab</span>
+      <h3>Behind the builds</h3>
+    </div>
+    <div class="lab-strip">
+      <button class="lab-card" data-open="jarvis" data-cursor="VIEW">
+        <img src="assets/projects/jarvis.jpg" alt="JARVIS voice assistant" loading="lazy">
+        <span class="lab-card-label">Building JARVIS</span>
+      </button>
+      <button class="lab-card" data-open="pothole" data-cursor="VIEW">
+        <img src="assets/projects/pothole.jpg" alt="Pothole detection" loading="lazy">
+        <span class="lab-card-label">Pothole Detection</span>
+      </button>
+      <button class="lab-card" data-open="mcad" data-cursor="VIEW">
+        <img src="assets/projects/mc-ad-greeks.jpg" alt="Monte Carlo Greeks" loading="lazy">
+        <span class="lab-card-label">Pricing With Monte Carlo</span>
+      </button>
+      <button class="lab-card" data-open="callsystem" data-cursor="VIEW">
+        <img src="assets/projects/call-system.jpg" alt="Call System" loading="lazy">
+        <span class="lab-card-label">Automating Parent Calls</span>
+      </button>
+      <button class="lab-card" data-open="resultmaker" data-cursor="VIEW">
+        <img src="assets/projects/result-maker.jpg" alt="Result Maker" loading="lazy">
+        <span class="lab-card-label">Generating Reports</span>
+      </button>
+      <button class="lab-card" data-open="academy" data-cursor="VIEW">
+        <img src="assets/projects/academy.jpg" alt="National Academy website" loading="lazy">
+        <span class="lab-card-label">Academy Website</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ GITHUB DASHBOARD ============ -->
+  <section class="github-section" id="github">
+    <div class="section-head">
+      <span class="section-eyebrow">Open Source</span>
+      <h2>My code. My experiments. My builds.</h2>
+    </div>
+    <div class="gh-dashboard">
+      <div class="gh-profile-card reveal">
+        <img id="ghAvatar" src="assets/logo.png" alt="GitHub avatar" class="gh-avatar">
+        <h3 id="ghName">itxayushshukla</h3>
+        <p id="ghBio">AI/ML engineer &amp; developer</p>
+        <a href="https://github.com/itxayushshukla/" target="_blank" rel="noopener" class="btn btn-solid" data-cursor="CODE">Visit GitHub</a>
+      </div>
+      <div class="gh-stats reveal">
+        <div class="gh-stat"><span class="gh-stat-num" id="ghRepos">—</span><span class="gh-stat-label">Repositories</span></div>
+        <div class="gh-stat"><span class="gh-stat-num" id="ghFollowers">—</span><span class="gh-stat-label">Followers</span></div>
+        <div class="gh-stat"><span class="gh-stat-num" id="ghFollowing">—</span><span class="gh-stat-label">Following</span></div>
+        <div class="gh-stat"><span class="gh-stat-num" id="ghLangs">—</span><span class="gh-stat-label">Languages used</span></div>
+      </div>
+    </div>
+    <p class="gh-fallback" id="ghFallback" hidden>Live GitHub data couldn't be loaded right now — <a href="https://github.com/itxayushshukla/" target="_blank" rel="noopener">view the profile directly on GitHub</a>.</p>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="section-head">
+      <span class="section-eyebrow">About</span>
+      <h2>Who is Ayush?</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-block reveal">
+        <h4>Who Am I</h4>
+        <p>Building practical technology through problem-solving, curiosity and continuous learning. Strong in communication, analytical thinking, teamwork and leadership.</p>
+        <p class="about-sub">BTech CSE (AI/ML) · Vasantdada Patil Pratishthan's College of Engineering and Visual Arts · Second Year, ongoing</p>
+      </div>
+
+      <div class="about-block reveal">
+        <h4>What I Build</h4>
+        <div class="pill-group-wrap">
+          <span class="pill-group-label">AI / Data</span>
+          <div class="pill-group"><span>Generative AI</span><span>Computer Vision</span><span>Machine Learning</span></div>
+        </div>
+        <div class="pill-group-wrap">
+          <span class="pill-group-label">Development</span>
+          <div class="pill-group"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Flask</span></div>
+        </div>
+        <div class="pill-group-wrap">
+          <span class="pill-group-label">Hardware</span>
+          <div class="pill-group"><span>Arduino</span><span>Circuit Design</span><span>Sensors</span></div>
+        </div>
+        <div class="pill-group-wrap">
+          <span class="pill-group-label">Tools</span>
+          <div class="pill-group"><span>Git</span><span>GitHub</span><span>VS Code</span><span>REST APIs</span></div>
+        </div>
+      </div>
+
+      <div class="about-block reveal">
+        <h4>What I Teach</h4>
+        <ul class="teach-list">
+          <li><strong>PCM Doubt Solver</strong> — National Academy <span>Feb 2025 – Present</span></li>
+          <li><strong>Mathematics Teacher</strong> — Infinity Academy <span>Jun 2025 – Present</span></li>
+          <li><strong>Mathematics Teacher</strong> — Skyline Tutorial <span>May 2025 – Oct 2025</span></li>
+        </ul>
+        <p class="about-quote">Concept first. Practice with purpose. Build confidence.</p>
+      </div>
+
+      <div class="about-block reveal">
+        <h4>Currently Exploring</h4>
+        <div class="pill-group"><span>AI</span><span>Robotics</span><span>Mathematics</span></div>
+        <p class="about-sub">Currently exploring AI × Robotics × Mathematics.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESUME CENTER ============ -->
+  <section class="resume-center" id="resume">
+    <div class="section-head">
+      <span class="section-eyebrow">Resume</span>
+      <h2>Two sides of what I do.</h2>
+    </div>
+    <div class="resume-grid">
+      <div class="resume-card reveal">
+        <h3>Engineering Resume</h3>
+        <p>AI/ML • Software • Projects</p>
+        <div class="resume-actions">
+          <a href="assets/resumes/Ayush_Shukla_Engineering_Resume.pdf" target="_blank" rel="noopener" class="btn btn-outline">View</a>
+          <a href="assets/resumes/Ayush_Shukla_Engineering_Resume.pdf" download class="btn btn-solid">Download PDF</a>
+        </div>
+      </div>
+      <div class="resume-card reveal">
+        <h3>Teaching Resume</h3>
+        <p>Mathematics • Education • Teaching</p>
+        <div class="resume-actions">
+          <a href="assets/resumes/Ayush_Shukla_Teaching_Resume.pdf" target="_blank" rel="noopener" class="btn btn-outline">View</a>
+          <a href="assets/resumes/Ayush_Shukla_Teaching_Resume.pdf" download class="btn btn-solid">Download PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <h2 class="reveal">Have an idea worth building?</h2>
+      <p class="reveal">Whether you want to discuss technology, collaborate on a project, or talk about mathematics, I'd love to connect.</p>
+
+      <div class="contact-grid reveal">
+        <a href="mailto:ayushlab02@gmail.com" class="contact-item">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">ayushlab02@gmail.com</span>
+        </a>
+        <a href="tel:+917021737823" class="contact-item">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">+91 70217 37823</span>
+        </a>
+        <div class="contact-item">
+          <span class="contact-label">Location</span>
+          <span class="contact-value">Kalyan (E), Maharashtra</span>
+        </div>
+      </div>
+
+      <div class="contact-cta reveal">
+        <a href="https://github.com/itxayushshukla/" target="_blank" rel="noopener" class="btn btn-outline" data-cursor="CODE">GitHub</a>
+        <a href="https://www.linkedin.com/in/ayush-shukla-b1b355384/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+        <a href="mailto:ayushlab02@gmail.com" class="btn btn-solid">Email Me</a>
+        <a href="assets/resumes/Ayush_Shukla_Engineering_Resume.pdf" download class="btn btn-outline">Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="assets/logo.png" alt="AS Logo">
+      <div>
+        <strong>AYUSH SHUKLA</strong>
+        <span>Building things. Learning things. Teaching things.</span>
+      </div>
+    </div>
+    <nav class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#tabs" data-tab-link="projects">Projects</a>
+      <a href="#tabs" data-tab-link="experiments">Experiments</a>
+      <a href="#tabs" data-tab-link="resources">Resources</a>
+      <a href="#about">About</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-social">
+      <a href="https://github.com/itxayushshukla/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/ayush-shukla-b1b355384/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Ayush Shukla. All rights reserved.</span>
+    <span>Built with curiosity, code &amp; concepts.</span>
+  </div>
+</footer>
+
+<!-- ============ PROJECT / HIGHLIGHT MODAL ============ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
